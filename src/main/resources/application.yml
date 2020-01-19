@@ -1,6 +1,3 @@
-my:
-  name: forezp
-  age: 12
 server:
   port: 8088
   servlet:
