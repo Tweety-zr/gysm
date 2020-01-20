@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geyun.gysm.base.mapper.BaseMapper">
+
+
+    <!--    检查账户-->
+    <select id="cheakAccount" resultType="com.geyun.gysm.base.model.BaseUser" parameterType="string">
+        SELECT
+            iNo,
+            strGuid,
+            strName,
+            strMobile,
+            strAccount,
+            strPasswd,
+            strSex,
+            strScreenPwd
+        FROM
+            base_user
+        WHERE strAccount = #{strAccount}
+    </select>
+
+    <!--    根据用户guid查角色-->
+    <select id="selRoleByUId" parameterType="hashmap" resultType="com.geyun.gysm.base.model.BaseRole">
+        SELECT
+            B.strGuid,
+            B.strRoleName
+        FROM
+            base_role B
+            LEFT JOIN rel_user_role RUR ON B.strGuid = RUR.strRoleGuid
+        WHERE
+            RUR.strUserGuid = #{strGuid}
+    </select>
+
+    <!--    根据用户角色id查权限-->
+    <select id="selPermByRId" parameterType="hashmap" resultType="com.geyun.gysm.base.model.BasePermission">
+        SELECT
+            BP.strGuid,
+            BP.strPermName,
+            BP.description
+        FROM
+            base_permission BP
+            LEFT JOIN rel_role_permission RRP ON BP.strGuid = RRP.strPermissionGuid
+        WHERE
+            RRP.strRoleGuid = #{strGuid}
+    </select>
+
+    <update id="resetPwd" parameterType="hashmap">
+        UPDATE base_user
+            SET strPasswd = #{strPasswd}
+        WHERE
+            strGuid = #{strGuid}
+    </update>
+
+    <update id="resetScreenPwd" parameterType="hashmap">
+        UPDATE base_user
+            SET strScreenPwd = #{strScreenPwd}
+        WHERE
+            strGuid = #{strGuid}
+    </update>
+
+</mapper>

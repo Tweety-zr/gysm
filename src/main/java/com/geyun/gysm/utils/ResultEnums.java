@@ -1,4 +1,4 @@
-package com.geyun.gysm.util;
+package com.geyun.gysm.utils;
 
 /**
  * @author 崔世良

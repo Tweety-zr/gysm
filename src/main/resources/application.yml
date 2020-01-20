@@ -1,14 +1,19 @@
 server:
-  port: 8088
+  port: 8888
   servlet:
     context-path: /gysm
 
-
+#  spring.resources.static-locations=classpath:/
+#  spring.mvc.static-path-pattern=/**
 spring:
+  resources:
+    static-locations: classpath:/
+  mvc:
+    static-path-pattern: /**
   datasource:
     url: jdbc:mysql://localhost:3306/gysm?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: root
+    password: 1qaz2wsx
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -58,7 +63,7 @@ spring:
 #        enabled: true
 
 mybatis-plus:
-  type-aliases-package: com.geyun.gysm.*.pojo
+  type-aliases-package: com.geyun.gysm.*.model
   mapper-locations: classpath:/mapper/*/*.xml
   configuration:
     map-underscore-to-camel-case: true

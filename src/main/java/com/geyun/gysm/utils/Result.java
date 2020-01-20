@@ -1,4 +1,6 @@
-package com.geyun.gysm.util;
+package com.geyun.gysm.utils;
+
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ import java.util.Map;
  * @editdate 2020/1/19 16:20
  * @description
  */
+@Data
 public class Result {
     private Integer resultCode;
 
@@ -44,27 +47,4 @@ public class Result {
         return result;
     }
 
-    public Integer getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(Integer resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public String getResultMsg() {
-        return resultMsg;
-    }
-
-    public void setResultMsg(String resultMsg) {
-        this.resultMsg = resultMsg;
-    }
-    public Map<String, Object> getResultData() {
-        return resultData;
-    }
-
-    public Result setResultData(Map<String, Object> resultData) {
-        this.resultData = resultData;
-        return this;
-    }
 }
